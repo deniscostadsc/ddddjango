@@ -5,5 +5,5 @@ run:
 	docker-compose -f .docker/docker-compose.yml up
 
 test:
-	docker build -f .docker/Dockerfile-ci -t dddjango-ci .
-	docker run dddjango-ci 'pytest'
+	docker build -f .docker/Dockerfile-ci -t ddddjango-ci .
+	docker run ddddjango-ci 'pytest'
