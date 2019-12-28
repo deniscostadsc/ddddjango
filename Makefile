@@ -1,20 +1,26 @@
-PHONY: buildciimage checkcodeformat formatcode lint run test
+PHONY: \
+	build-ci-image \
+	check-code-format \
+	format-code \
+	lint \
+	run \
+	test
 
-buildciimage:
+build-ci-image:
 	docker build -f .docker/Dockerfile-ci -t ddddjango-ci .
 
-checkcodeformat: buildciimage
+check-code-format: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci black --check --line-length=80 .
 
-formatcode: buildciimage
+format-code: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci black --line-length=80 .
 
-lint: buildciimage
+lint: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci flake8
 
 run:
 	docker-compose -f .docker/docker-compose.yml build
 	docker-compose -f .docker/docker-compose.yml up
 
-test: buildciimage
+test: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci pytest
