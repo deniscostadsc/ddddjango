@@ -10,7 +10,7 @@ all: \
 .PHONY: all
 
 build-ci-image:
-	docker build -f .docker/Dockerfile-ci -t ddddjango-ci .
+	docker build -f .docker/ci.Dockerfile -t ddddjango-ci .
 
 check-code-format: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci black --check --line-length=80 .
