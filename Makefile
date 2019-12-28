@@ -1,10 +1,13 @@
 PHONY: \
+	build \
 	build-ci-image \
 	check-code-format \
 	format-code \
 	lint \
 	run \
 	test
+
+build: build-ci-image check-code-format lint test
 
 build-ci-image:
 	docker build -f .docker/Dockerfile-ci -t ddddjango-ci .
