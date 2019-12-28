@@ -14,4 +14,4 @@ lint:
 
 formatcode:
 	docker build -f .docker/Dockerfile-ci -t ddddjango-ci .
-	docker run -v $(shell pwd):/code ddddjango-ci black .
+	docker run -v $(shell pwd):/code ddddjango-ci black --line-length=80 .
