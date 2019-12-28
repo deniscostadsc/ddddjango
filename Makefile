@@ -1,19 +1,19 @@
 PHONY: \
-	build \
 	build-ci-image \
 	check-code-format \
+	ci \
 	format-code \
 	lint \
 	run \
 	test
-
-build: build-ci-image check-code-format lint test
 
 build-ci-image:
 	docker build -f .docker/Dockerfile-ci -t ddddjango-ci .
 
 check-code-format: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci black --check --line-length=80 .
+
+ci: build-ci-image check-code-format lint test
 
 format-code: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci black --line-length=80 .

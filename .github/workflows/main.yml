@@ -13,4 +13,4 @@ jobs:
 
       - name: Build and test
         run: |
-          make build
+          make ci
