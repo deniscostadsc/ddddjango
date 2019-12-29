@@ -6,6 +6,7 @@ all: \
 	format-code \
 	lint \
 	run \
+	stop \
 	test
 .PHONY: all
 
@@ -31,7 +32,10 @@ lint: build-ci-image
 
 run:
 	docker-compose -f .docker/docker-compose.yml build
-	docker-compose -f .docker/docker-compose.yml up
+	docker-compose -f .docker/docker-compose.yml up -d
+
+stop:
+	docker-compose -f .docker/docker-compose.yml stop
 
 test: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci pytest
