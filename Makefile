@@ -19,9 +19,9 @@ check-code-format: build-ci-image
 ci: build-ci-image check-code-format lint test
 
 clean:
-	sudo chown -R ${USER}:${USER} . # docker create files as root
+	find . -name '*.pyc' | xargs sudo chown ${USER}:${USER}
 	find . -name '*.pyc' -delete
-	find . -name '*.pyo' -delete
+	find . -name '__pycache__' | xargs sudo chown -R ${USER}:${USER}
 	find . -name '__pycache__' -delete
 
 format-code: build-ci-image
