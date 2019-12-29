@@ -37,4 +37,4 @@ stop:
 	docker-compose -f .docker/docker-compose.yml stop
 
 test: build-ci-image
-	docker run -v $(shell pwd):/code ddddjango-ci pytest
+	docker run -v $(shell pwd):/code ddddjango-ci ./run_tests.sh
