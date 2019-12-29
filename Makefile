@@ -22,11 +22,11 @@ clean:
 
 format-code: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci isort -rc .
-	docker run -v $(shell pwd):/code ddddjango-ci black --line-length=80 .
+	docker run -v $(shell pwd):/code ddddjango-ci black .
 
 lint: build-ci-image
 	docker run -v $(shell pwd):/code ddddjango-ci isort -rc -c .
-	docker run -v $(shell pwd):/code ddddjango-ci black --check --line-length=80 .
+	docker run -v $(shell pwd):/code ddddjango-ci black --check .
 	docker run -v $(shell pwd):/code ddddjango-ci flake8
 
 run:
