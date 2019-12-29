@@ -1,4 +1,5 @@
 -r production.txt
 black
 flake8
+isort
 pytest
